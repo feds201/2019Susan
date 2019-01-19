@@ -1,21 +1,34 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+#include "Shooter.h"
 
-#include "shooter.h"
+Shooter::Shooter(int portL, int portR) {
+    motorL = new WPI_TalonSRX(portL);
+    motorR = new WPI_TalonSRX(portR);
+}
 
-shooter::shooter() {}
+Shooter::~Shooter() {
+    delete motorL;
+    delete motorR;
+}
 
-void shooter::shoot(){
-
+void Shooter::shoot() {
     if(Shooter.Get() == frc::DoubleSolenoid::Value::kForward){
         Shooter.Set(frc::DoubleSolenoid::Value::kReverse);
     }else{
         Shooter.Set(frc::DoubleSolenoid::Value::kForward);
     }
+}
 
+void Shooter::powerWheels(bool enable) {
+    wheelsOn = enable;
+    if (wheelsOn) {
+        motorL->Set(1);
+        motorR->Set(-1);
+    } else {
+        motorL->Set(0);
+        motorR->Set(0);
+    }
+}
 
+void Shooter::toggleWheels() {
+    powerWheels(!wheelsOn);
 }

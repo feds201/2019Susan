@@ -9,14 +9,18 @@
 
 #include"frc/WPILib.h"
 
-class shooter {
+class Shooter {
  public:
-  shooter();
+  Shooter(int, int);
+  ~Shooter();
   void shoot();
+  void powerWheels(bool);
+  void toggleWheels();
 
-  private:
-
+ private:
   frc::DoubleSolenoid Shooter{0, 1, 2};
 
-
+  bool wheelsOn = false;
+  WPI_TalonSRX* motorL;
+  WPI_TalonSRX* motorR;
 };
