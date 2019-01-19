@@ -4,8 +4,7 @@
 
 class Drivetrain {
  public:
-  Drivetrain(int, int, int, int);
-  ~Drivetrain();
+  Drivetrain();
   void setVelocity(double, double);
 
  private:

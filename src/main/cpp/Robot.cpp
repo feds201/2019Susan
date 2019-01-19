@@ -22,9 +22,17 @@ void Robot::AutonomousPeriodic() {
    
 }
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() {
+
+    joy->SetThrottleChannel(1);
+    joy->SetTwistChannel(4);
+
+}
 
 void Robot::TeleopPeriodic() {
+
+Drive->setVelocity(joy->GetThrottle(), joy->GetTwist());
+
 
 }
 
