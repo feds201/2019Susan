@@ -12,10 +12,9 @@
 
 class Shooter {
  public:
-  Shooter(int, int, int, int, int);
-  ~Shooter();
+  Shooter();
   void shoot();
-  void powerWheels(bool);
+  void powerWheels(bool on);
   void toggleWheels();
 
  private:

@@ -1,21 +1,16 @@
 #include "Shooter.h"
 
-Shooter::Shooter(int portL, int portR, int pistonPCM, int portForward, int portReverse) {
-    piston = new DoubleSolenoid(pistonPCM, portForward, portReverse);
-    motorL = new WPI_TalonSRX(portL);
-    motorR = new WPI_TalonSRX(portR);
-}
-
-Shooter::~Shooter() {
-    delete motorL;
-    delete motorR;
+Shooter::Shooter() {
+    piston = new frc::DoubleSolenoid(10, 2, 3);
+    motorL = new WPI_TalonSRX(5);
+    motorR = new WPI_TalonSRX(6);
 }
 
 void Shooter::shoot() {
-    if(piston.Get() == frc::DoubleSolenoid::Value::kForward){
-        piston.Set(frc::DoubleSolenoid::Value::kReverse);
+    if(piston->Get() == frc::DoubleSolenoid::Value::kForward){
+        piston->Set(frc::DoubleSolenoid::Value::kReverse);
     }else{
-        piston.Set(frc::DoubleSolenoid::Value::kForward);
+        piston->Set(frc::DoubleSolenoid::Value::kForward);
     }
 }
 

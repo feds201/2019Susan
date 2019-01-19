@@ -16,8 +16,8 @@ class Pickup {
 
   private:
 
-  frc::DoubleSolenoid pickup{2, 1, 2};
-  frc::DoubleSolenoid pickup2{2, 4, 4};
+  frc::DoubleSolenoid* pickup;
+  frc::DoubleSolenoid* pickup2;
   
 
 };
