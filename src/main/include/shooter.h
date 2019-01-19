@@ -8,17 +8,18 @@
 #pragma once
 
 #include"frc/WPILib.h"
+#include "ctre/Phoenix.h"
 
 class Shooter {
  public:
-  Shooter(int, int);
+  Shooter(int, int, int, int, int);
   ~Shooter();
   void shoot();
   void powerWheels(bool);
   void toggleWheels();
 
  private:
-  frc::DoubleSolenoid Shooter{0, 1, 2};
+  frc::DoubleSolenoid* piston;
 
   bool wheelsOn = false;
   WPI_TalonSRX* motorL;

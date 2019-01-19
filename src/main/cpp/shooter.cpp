@@ -1,6 +1,7 @@
 #include "Shooter.h"
 
-Shooter::Shooter(int portL, int portR) {
+Shooter::Shooter(int portL, int portR, int pistonPCM, int portForward, int portReverse) {
+    piston = new DoubleSolenoid(pistonPCM, portForward, portReverse);
     motorL = new WPI_TalonSRX(portL);
     motorR = new WPI_TalonSRX(portR);
 }
@@ -11,10 +12,10 @@ Shooter::~Shooter() {
 }
 
 void Shooter::shoot() {
-    if(Shooter.Get() == frc::DoubleSolenoid::Value::kForward){
-        Shooter.Set(frc::DoubleSolenoid::Value::kReverse);
+    if(piston.Get() == frc::DoubleSolenoid::Value::kForward){
+        piston.Set(frc::DoubleSolenoid::Value::kReverse);
     }else{
-        Shooter.Set(frc::DoubleSolenoid::Value::kForward);
+        piston.Set(frc::DoubleSolenoid::Value::kForward);
     }
 }
 

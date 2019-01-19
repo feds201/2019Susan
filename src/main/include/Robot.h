@@ -7,6 +7,11 @@
 
 #pragma once
 
+#include "frc/WPILib.h"
+#include "Drivetrain.h"
+#include "Shooter.h"
+#include "Pickup.h"
+
 #include <string>
 
 #include <frc/TimedRobot.h>
@@ -14,6 +19,8 @@
 
 class Robot : public frc::TimedRobot {
  public:
+  Robot();
+  ~Robot();
   void RobotInit() override;
   void RobotPeriodic() override;
   void AutonomousInit() override;
@@ -23,6 +30,8 @@ class Robot : public frc::TimedRobot {
   void TestPeriodic() override;
 
  private:
-
- 
+  Drivetrain* train;
+  Shooter* shooter;
+  bool disable = false;
+  frc::Joystick* joy;
 };
