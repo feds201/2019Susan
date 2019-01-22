@@ -4,12 +4,19 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include"cameraserver/CameraServer.h"
+
 Robot::Robot() {
     
 }
 
 void Robot::RobotInit() {
   
+cam = frc::CameraServer::GetInstance()->StartAutomaticCapture("Camera", 0);
+cam.SetResolution(1000, 800);
+cam.SetFPS(15);
+
+
 }
 
 void Robot::RobotPeriodic() {}
@@ -24,15 +31,27 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
 
-    joy->SetThrottleChannel(1);
-    joy->SetTwistChannel(4);
+    joy.SetThrottleChannel(1);
+    joy.SetTwistChannel(4);
 
 }
 
 void Robot::TeleopPeriodic() {
 
-Drive->setVelocity(joy->GetThrottle(), joy->GetTwist());
+Drive.setVelocity(joy.GetThrottle(), joy.GetTwist());
 
+Shoot.shoot(joy.GetRawButton(1));
+
+if (joy.GetRawButtonPressed(2)){
+Pick.Grab();
+}
+
+if(joy.GetRawButtonPressed(3))
+{    
+
+Shoot.toggleWheels();
+
+}
 
 }
 

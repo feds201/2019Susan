@@ -6,8 +6,8 @@ Shooter::Shooter() {
     motorR = new WPI_TalonSRX(6);
 }
 
-void Shooter::shoot() {
-    if(piston->Get() == frc::DoubleSolenoid::Value::kForward){
+void Shooter::shoot(bool state) {
+    if(!state){
         piston->Set(frc::DoubleSolenoid::Value::kReverse);
     }else{
         piston->Set(frc::DoubleSolenoid::Value::kForward);
@@ -17,8 +17,8 @@ void Shooter::shoot() {
 void Shooter::powerWheels(bool enable) {
     wheelsOn = enable;
     if (wheelsOn) {
-        motorL->Set(1);
-        motorR->Set(-1);
+        motorL->Set(-1);
+        motorR->Set(1);
     } else {
         motorL->Set(0);
         motorR->Set(0);

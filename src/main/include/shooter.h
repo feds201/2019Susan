@@ -13,7 +13,7 @@
 class Shooter {
  public:
   Shooter();
-  void shoot();
+  void shoot(bool state);
   void powerWheels(bool on);
   void toggleWheels();
 

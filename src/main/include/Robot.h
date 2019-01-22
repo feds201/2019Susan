@@ -16,6 +16,7 @@
 #include "Pickup.h"
 #include"Robot.h"
 #include"shooter.h"
+#include"cameraserver/CameraServer.h"
 
 
 
@@ -33,10 +34,11 @@ class Robot : public frc::TimedRobot {
 
  private:
   
-Drivetrain* Drive{};
-Shooter* Shoot{};
-Pickup* Pick{};
-frc::Joystick* joy{0};
+Drivetrain Drive{};
+Shooter Shoot{};
+Pickup Pick{};
+frc::Joystick joy{0};
+cs::UsbCamera cam{};
 
 
 };
